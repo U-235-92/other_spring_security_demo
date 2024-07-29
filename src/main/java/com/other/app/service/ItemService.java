@@ -3,10 +3,11 @@ package com.other.app.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.other.app.dto.ItemDTO;
 import com.other.app.entity.Item;
-import com.other.app.repository.InMemoryItemRepository;
+import com.other.app.repository.DbItemRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,26 +15,32 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ItemService {
 
-	private final InMemoryItemRepository inMemoryItemRepository;
+	private final DbItemRepository dbItemRepository;
 	
 	public Item getItem(long id) {
-		return inMemoryItemRepository.getItem(id);
+		return dbItemRepository.getReferenceById(id);
 	}
 	
 	public List<Item> getItems() {
-		return inMemoryItemRepository.getItems();
+		return dbItemRepository.findAll();
 	}
 	
 	public void deleteItem(long id) {
-		inMemoryItemRepository.deleteItem(id);
+		dbItemRepository.deleteById(id);
 	}
 	
 	public void createItem(ItemDTO itemDTO) {
-		inMemoryItemRepository.createItem(itemDTO);
+		Item item = new Item();
+		item.setTitle(itemDTO.getTitle());
+		dbItemRepository.save(item);
 	}
 	
+	@Transactional
 	public void updateItem(long id, ItemDTO itemDTO) {
-		inMemoryItemRepository.updateItem(id, itemDTO);
+		Item item = getItem(id);
+		item.setTitle(itemDTO.getTitle());
+		dbItemRepository.save(item);
+//		dbItemRepository.updateItem(item.getId(), item.getTitle());
 	}
 
 }
