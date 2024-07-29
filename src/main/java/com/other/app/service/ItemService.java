@@ -1,5 +1,7 @@
 package com.other.app.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.other.app.dto.ItemDTO;
@@ -18,6 +20,10 @@ public class ItemService {
 		return inMemoryItemRepository.getItem(id);
 	}
 	
+	public List<Item> getItems() {
+		return inMemoryItemRepository.getItems();
+	}
+	
 	public void deleteItem(long id) {
 		inMemoryItemRepository.deleteItem(id);
 	}
@@ -29,4 +35,5 @@ public class ItemService {
 	public void updateItem(long id, ItemDTO itemDTO) {
 		inMemoryItemRepository.updateItem(id, itemDTO);
 	}
+
 }

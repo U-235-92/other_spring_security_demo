@@ -1,6 +1,8 @@
 package com.other.app.repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
@@ -15,16 +17,16 @@ public class InMemoryItemRepository {
 	private static long id;
 	
 	{
-		itemMap.put(id++, new Item(id, "Book 1"));
-		itemMap.put(id++, new Item(id, "Book 2"));
+		itemMap.put(++id, new Item(id, "Book 1"));
+		itemMap.put(++id, new Item(id, "Book 2"));
 	}
 	
 	public void createItem(ItemDTO itemDTO) {
 		itemMap.put(id++, new Item(id, itemDTO.getTitle()));
 	}
 	
-	public void deleteItem(long id) {
-		itemMap.remove(id);
+	public Item deleteItem(long id) {
+		return itemMap.remove(id);
 	}
 	
 	public Item getItem(long id) {
@@ -35,6 +37,10 @@ public class InMemoryItemRepository {
 		Item item = getItem(id);
 		item.setTitle(itemDTO.getTitle());
 		itemMap.replace(id, item);		
+	}
+
+	public List<Item> getItems() {
+		return new ArrayList<Item>(itemMap.values());
 	}
 	
 }
