@@ -55,33 +55,33 @@ public class SecurityConfiguration {
 		return daoAuthenticationProvider;
 	}
 	
-	@Bean 
-	protected InMemoryUserDetailsManager inMemoryUserDetailsManager() {
-		UserDetails readUser = User.builder()
-				.username("r")
-				.password(passwordEncoder().encode("123"))
-				.authorities(Permition.READ.name())
-				.build();
-		UserDetails readCreateUser = User.builder()
-				.username("cr")
-				.password(passwordEncoder().encode("123"))
-				.authorities(Permition.READ.name(), Permition.CREATE.name())
-				.build();
-		UserDetails readCreateDeleteUser = User.builder()
-				.username("crd")
-				.password(passwordEncoder().encode("123"))
-				.authorities(Permition.READ.name(), Permition.CREATE.name(), Permition.DELETE.name())
-				.build();
-		UserDetails readCreateDeleteUpdateUser = User.builder()
-				.username("crud")
-				.password(passwordEncoder().encode("123"))
-				.authorities(Permition.READ.name(), Permition.CREATE.name(), Permition.DELETE.name(), Permition.UPDATE.name())
-				.build();
-		InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
-		inMemoryUserDetailsManager.createUser(readUser);
-		inMemoryUserDetailsManager.createUser(readCreateUser);
-		inMemoryUserDetailsManager.createUser(readCreateDeleteUser);
-		inMemoryUserDetailsManager.createUser(readCreateDeleteUpdateUser);
-		return inMemoryUserDetailsManager;
-	}
+//	@Bean 
+//	protected InMemoryUserDetailsManager inMemoryUserDetailsManager() {
+//		UserDetails readUser = User.builder()
+//				.username("r")
+//				.password(passwordEncoder().encode("123"))
+//				.authorities(Permition.READ.name())
+//				.build();
+//		UserDetails readCreateUser = User.builder()
+//				.username("cr")
+//				.password(passwordEncoder().encode("123"))
+//				.authorities(Permition.READ.name(), Permition.CREATE.name())
+//				.build();
+//		UserDetails readCreateDeleteUser = User.builder()
+//				.username("crd")
+//				.password(passwordEncoder().encode("123"))
+//				.authorities(Permition.READ.name(), Permition.CREATE.name(), Permition.DELETE.name())
+//				.build();
+//		UserDetails readCreateDeleteUpdateUser = User.builder()
+//				.username("crud")
+//				.password(passwordEncoder().encode("123"))
+//				.authorities(Permition.READ.name(), Permition.CREATE.name(), Permition.DELETE.name(), Permition.UPDATE.name())
+//				.build();
+//		InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
+//		inMemoryUserDetailsManager.createUser(readUser);
+//		inMemoryUserDetailsManager.createUser(readCreateUser);
+//		inMemoryUserDetailsManager.createUser(readCreateDeleteUser);
+//		inMemoryUserDetailsManager.createUser(readCreateDeleteUpdateUser);
+//		return inMemoryUserDetailsManager;
+//	}
 }
